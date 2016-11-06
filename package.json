@@ -1,0 +1,27 @@
+{
+  "name": "react-router-redux-auth",
+  "version": "0.0.9",
+  "description": "A npm package for react, redux, react-router setup to authenticate from redux state and redirected to wanted url",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sorja/react-router-redux-auth.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "react-router",
+    "react-redux-auth",
+    "react-router-auth",
+    "react-router-redux-auth"
+  ],
+  "author": "Miró Sorja",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sorja/react-router-redux-auth/issues"
+  },
+  "homepage": "https://github.com/sorja/react-router-redux-auth#readme"
+}
