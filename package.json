@@ -1,6 +1,6 @@
 {
   "name": "react-router-redux-auth",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A npm package for react, redux, react-router setup to authenticate from redux state and redirected to wanted url",
   "main": "index.js",
   "scripts": {
