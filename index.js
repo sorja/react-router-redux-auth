@@ -1,9 +1,13 @@
 "use strict";
 // polyfill
+
 if (typeof Object.assign != 'function') {
-  Object.assign = function (target, varArgs) { // .length of function is 2
+  Object.assign = function (target, varArgs) {
+    // .length of function is 2
     'use strict';
-    if (target == null) { // TypeError if undefined or null
+
+    if (target == null) {
+      // TypeError if undefined or null
       throw new TypeError('Cannot convert undefined or null to object');
     }
 
@@ -12,7 +16,8 @@ if (typeof Object.assign != 'function') {
     for (var index = 1; index < arguments.length; index++) {
       var nextSource = arguments[index];
 
-      if (nextSource != null) { // Skip over if undefined or null
+      if (nextSource != null) {
+        // Skip over if undefined or null
         for (var nextKey in nextSource) {
           // Avoid bugs when hasOwnProperty is shadowed
           if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
@@ -25,18 +30,21 @@ if (typeof Object.assign != 'function') {
   };
 }
 
-module.exports = function(store, routeObject, statePath = 'auth', redir = '') {
-  return Object.assign(
-    routeObject,
-    {
-      onEnter: (nextState, replace, callback) => {
-        const state = store.getState()
-        const auth = statePath.split('.').reduce((o, i) => o[i], state)
-        if (!auth) {
-          console.warn('Not authenticated. Redirecting')
-          replace(`/${redir}`)
-        }
-        callback()
+module.exports = function (store, routeObject) {
+  var statePath = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'auth';
+  var redir = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
+
+  return Object.assign(routeObject, {
+    onEnter: function onEnter(nextState, replace, callback) {
+      var state = store.getState();
+      var auth = statePath.split('.').reduce(function (o, i) {
+        return o[i];
+      }, state);
+      if (!auth) {
+        console.warn('Not authenticated. Redirecting');
+        replace('/' + redir);
       }
-    })
-}
+      callback();
+    }
+  });
+};
